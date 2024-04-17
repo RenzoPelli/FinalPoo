@@ -91,7 +91,7 @@ public class HomeController {
 	@GetMapping("/socios-vitalicios")
 	public String goLifeMembers(Model model, @Param("key") String key, @Param("surnameKey") String surnameKey,
 			@Param("idKey") String idKey) {
-		if ("ROL_USUARIO".equalsIgnoreCase(getRol())) {
+		if ("ROL_COBRADOR".equalsIgnoreCase(getRol())) {
 			return "permissionDenied";
 		}
 		model.addAttribute("titulo", "Socios vitalicios");
@@ -107,7 +107,7 @@ public class HomeController {
 
 	@RequestMapping("/alta-socio")
 	public String showMemberAdd(Model model) {
-		if ("ROL_USUARIO".equalsIgnoreCase(getRol())) {
+		if ("ROL_COBRADOR".equalsIgnoreCase(getRol())) {
 			return "permissionDenied";
 		}
 		model.addAttribute("titulo", "Alta Socio");
