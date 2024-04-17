@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/layout}">
+
+<head th:replace="layout/layout :: head">
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+</head>
+
+<body>
+
+		<div class="bg-body-secondary page-wrapper border" id="page-content-wrapper">
+			<!-- Page content-->
+			<div class="container-fluid col-10" layout:fragment="page-content">
+
+				<div class="container-fluid h-100" id="dashboard-page">
+					<h1 class="text-secondary pt-2 fw-bold text-center" th:text="${titulo}"></h1>
+					<p class="col-10 pt-2 text-secondary">Este sistema está dirigido al Club Social Deportivo Ascensión
+						(CSDA) y fue desarrollado por estudiantes de la Universidad Nacional de Noroeste de la Provincia
+						de Buenos Aires
+						con fines educativos.</p>
+					<p class="col-10 pt-2 text-secondary"> En el Sistema tenemos las siguientes funciones: </p>
+						
+				</div>
+				<div class="row row-cols-2 text-center  m-3">
+					<div class="container border border-black bg-dark-subtle p-4">
+						<i class="bi bi-list-check"></i>
+						<a type="btn" th:href="@{/listado-socios}" href="#socios" class="text-decoration-none text-success"><b>Listado de Socios</b></a>
+					</div>
+					<div class="container border border-black bg-dark-subtle p-4">
+						<i class="bi bi-person-fill-add"></i>
+						<a th:href="@{/alta-socio}" href="#creacion" class="text-decoration-none text-success"><b>Añadir Nuevo Socio</b></a>
+					</div>
+					<div class="container border border-black bg-dark-subtle p-4">
+						<i class="bi bi-pass"></i>
+						<a th:href="@{/cobrar}" href="#cobrar-socio" class="text-decoration-none text-success"><b>Cobrar a Socio</b></a>
+					</div>
+					<div class="container border border-black bg-dark-subtle p-4">
+						<i class="bi bi-receipt"></i>
+						<a th:href="@{/socios-pendientes}" href="#socios-prendientes" class="text-decoration-none text-success"><b>Socios Pendientes</b></a>
+					</div>
+					<div class="container border border-black bg-dark-subtle p-4">
+						<i class="bi bi-person-vcard"></i>
+						<a th:href="@{/socios-vitalicios}" href="#socios-vitalicios" class="text-decoration-none text-success"><b>Socios Vitalicios</b></a>
+					</div>
+					
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<th:block layout:fragment="page-scripts">
+
+	</th:block>
+</body>
+
+</html>

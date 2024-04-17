@@ -45,21 +45,21 @@ public class HomeController {
 		this.usuarioServicio = usuarioServicio;
 	}
 
-	@GetMapping("/inicio")
+	@GetMapping("/dashboard")
 	public String goHome(Model model, Authentication authentication) {
 		String username = authentication.getName();
 		Usuario usuario = usuarioServicio.findByEmail(username);
 		setRol(usuario.getRol_id().getNombre());
 		model.addAttribute("titulo", "Bienvenido/a, " + usuario.getNombre());
 
-		return "inicio";
+		return "dashboard";
 	}
 
 	@GetMapping("/listado-socios")
 	public String goMembers(Model model, @Param("key") String key, @Param("surnameKey") String surnameKey,
 			@Param("idKey") String idKey) {
 
-		if ("ROL_USUARIO".equalsIgnoreCase(getRol())) {
+		if ("ROL_COBRADOR".equalsIgnoreCase(getRol())) {
 			return "permissionDenied";
 		}
 		model.addAttribute("titulo", "Listado de socios");
@@ -110,7 +110,7 @@ public class HomeController {
 		if ("ROL_USUARIO".equalsIgnoreCase(getRol())) {
 			return "permissionDenied";
 		}
-		model.addAttribute("titulo", "Alta de socio");
+		model.addAttribute("titulo", "Alta Socio");
 		Member socio = new Member();
 		model.addAttribute("nuevoSocio", socio);
 		return "newMember";
@@ -120,7 +120,7 @@ public class HomeController {
 	public String saveMember(@ModelAttribute("socio") Member socio) {
 
 		memberService.saveMember(socio);
-		return "redirect:/socios";
+		return "redirect:/listado-socios";
 	}
 
 	@RequestMapping(value = "/guardar-cobro", method = RequestMethod.POST)
@@ -132,7 +132,7 @@ public class HomeController {
 	@GetMapping("/eliminar/{id}")
 	public String deleteMember(@PathVariable int id) {
 		memberService.deleteMember(id);
-		return "redirect:/socios";
+		return "redirect:/listado-socios";
 	}
 
 	@RequestMapping("/editar/{id}")
@@ -167,7 +167,7 @@ public class HomeController {
 	@GetMapping("/historial/{id}")
 	public String goHistory(Model model, @PathVariable(name = "id") int id) {
 
-		model.addAttribute("titulo", "Historial de soio");
+		model.addAttribute("titulo", "Historial de Socio");
 
 		Member member = memberService.findByMemberId(id);
 		List<Charge> charges = memberService.memberCharges(member);
@@ -193,7 +193,7 @@ public class HomeController {
 		return "showMember";
 	}
 
-	@GetMapping("/inicio-sesion")
+	@GetMapping("/login")
 	public String iniciarSesion() {
 
 		return "login";
