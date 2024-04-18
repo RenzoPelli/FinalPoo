@@ -12,10 +12,10 @@ import com.unnoba.socialclub.entities.Charge;
 
 public interface MemberRepository extends JpaRepository <Member, Integer>{
 	
-	@Query ("SELECT m FROM Member m WHERE m.name LIKE %?1% AND m.surname LIKE %?2% AND m.id = ?3 AND m.eliminado IS NULL")
+	@Query ("SELECT m FROM Member m WHERE (m.name LIKE %?1%) AND (m.surname LIKE %?2%) AND (m.id = ?3) AND m.eliminado IS NULL")
 	public List <Member> findAll (String nameKey, String surnameKey, Integer idKey);
 	
-	@Query ("SELECT m FROM Member m WHERE m.name LIKE %?1% AND m.surname LIKE %?2% AND m.eliminado IS NULL")
+	@Query ("SELECT m FROM Member m WHERE (m.name LIKE %?1%) AND (m.surname LIKE %?2%) AND (m.eliminado IS NULL)")
 	public List <Member> findAllOption2(String nameKey, String surnameKey);  
 
 	@Query ("SELECT m FROM Member m WHERE m.eliminado IS NULL")
